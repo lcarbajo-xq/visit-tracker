@@ -1,5 +1,8 @@
 import { Hono } from 'https://deno.land/x/hono@v3.11.9/mod.ts'
-import { serveStatic } from 'https://deno.land/x/hono@v3.11.9/middleware.ts'
+import {
+  cors,
+  serveStatic
+} from 'https://deno.land/x/hono@v3.11.9/middleware.ts'
 import { streamSSE } from 'https://deno.land/x/hono@v3.11.9/helper/streaming/index.ts'
 
 interface Visit {
@@ -11,6 +14,8 @@ interface Visit {
 const db = await Deno.openKv()
 const app = new Hono()
 let i = 0
+
+app.use(cors())
 
 app.get('/', serveStatic({ path: './index.html' }))
 app.post('/counter', async (c) => {

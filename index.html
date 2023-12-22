@@ -12,8 +12,6 @@
     country: { name: country, flag }
   } = json
 
-  console.log(city, country, flag)
-
   await fetch('/visit', {
     method: 'POST',
     headers: {
@@ -32,7 +30,6 @@
     const lastVisitText = `Last visit from ${city}, ${country} ${flag}`
 
     const isLastEmpty = $last.innerHTML === ''
-    console.log(isLastEmpty)
 
     if (isLastEmpty) {
       $last.innerHTML = lastVisitText
